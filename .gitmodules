@@ -1,0 +1,3 @@
+[submodule "external/zfit_cpp"]
+	path = external/zfit_cpp
+	url = https://github.com/djean032/zfit_cpp.git
