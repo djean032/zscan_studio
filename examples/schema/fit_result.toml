@@ -1,0 +1,20 @@
+schema_version = 1
+run_id = "550e8400-e29b-41d4-a716-446655440000"
+converged = true
+status = 1
+function_evaluations = 20
+residual_norm = 0.1
+initial_residual_norm = 0.2
+max_abs_residual = 0.01
+chi_squared = 1.2
+jacobian_rank = 1
+[[parameters]]
+parameter = "sigma_g"
+value = 4.9e-18
+conditional_standard_error = 1e-19
+total_standard_error = 2e-19
+calibration_variance_contributions = [1e-40, 2e-40, 3e-40, 4e-40, 5e-40, 6e-40, 7e-40, 8e-40]
+[fit_arrays]
+path = "fit_arrays.bin"
+byte_size = 64
+sha256 = "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"

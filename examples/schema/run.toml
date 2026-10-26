@@ -1,0 +1,29 @@
+schema_version = 1
+run_id = "550e8400-e29b-41d4-a716-446655440000"
+session_id = "33e47923-4466-4ec8-b957-3e4c39ad4516"
+created_at = "2026-10-25T15:00:00Z"
+state = "complete"
+supersedes_run_ids = []
+[software]
+zscan_revision = "example-revision"
+zfit_revision = "d3612e964ad8b8e8274aa322d32ffbac2b28b706"
+working_tree_modified = false
+[[inputs]]
+kind = "scan"
+record_id = "scan-id"
+[inputs.file]
+path = "inputs/scan.bin"
+byte_size = 64
+sha256 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+[workup]
+selected_dark_ids = ["171e8400-e29b-41d4-a716-446655440000"]
+maximum_ai0_drift_v = 0.01
+maximum_ai1_drift_v = 0.02
+[fit_request]
+path = "fit_request.toml"
+byte_size = 64
+sha256 = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+[fit_result]
+path = "fit_result.toml"
+byte_size = 64
+sha256 = "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"

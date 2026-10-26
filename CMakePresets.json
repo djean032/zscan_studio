@@ -1,0 +1,54 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "schema",
+      "displayName": "Headless schema with tests",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/schema",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "BUILD_TESTING": "ON"
+      }
+    },
+    {
+      "name": "headless",
+      "displayName": "Headless schema without tests",
+      "inherits": "schema",
+      "binaryDir": "${sourceDir}/build/headless",
+      "cacheVariables": {
+        "BUILD_TESTING": "OFF"
+      }
+    },
+    {
+      "name": "workup",
+      "displayName": "Headless schema plus zfit_cpp workup",
+      "inherits": "schema",
+      "binaryDir": "${sourceDir}/build/workup",
+      "cacheVariables": {
+        "ZSCAN_ENABLE_WORKUP": "ON"
+      }
+    },
+    {
+      "name": "fitting",
+      "displayName": "Headless schema plus zfit_cpp fitting",
+      "inherits": "workup",
+      "binaryDir": "${sourceDir}/build/fitting",
+      "cacheVariables": {
+        "ZSCAN_ENABLE_FITTING": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "schema", "configurePreset": "schema" },
+    { "name": "headless", "configurePreset": "headless" },
+    { "name": "workup", "configurePreset": "workup" },
+    { "name": "fitting", "configurePreset": "fitting" }
+  ],
+  "testPresets": [
+    { "name": "schema", "configurePreset": "schema", "output": { "outputOnFailure": true } },
+    { "name": "workup", "configurePreset": "workup", "output": { "outputOnFailure": true } },
+    { "name": "fitting", "configurePreset": "fitting", "output": { "outputOnFailure": true } }
+  ]
+}

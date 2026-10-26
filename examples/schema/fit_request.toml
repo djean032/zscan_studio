@@ -1,0 +1,40 @@
+schema_version = 1
+run_id = "550e8400-e29b-41d4-a716-446655440000"
+curve_order = ["33e47923-4466-4ec8-b957-3e4c39ad4516"]
+fitted_parameters = ["sigma_g", "sigma_t"]
+[initial_parameters]
+sigma_g = 4.9e-18
+sigma_s = 1.6e-17
+sigma_t = 1.5e-17
+tau10 = 1e-12
+tau21 = 1e-12
+tau13 = 1e-12
+tau30 = 1.29e-7
+tau43 = 1e-12
+[solver]
+nz = 64
+population_rtol = 1e-6
+quadrature_rtol = 1e-7
+atol = 1e-10
+max_steps = 100000
+waveform_knots = 129
+pulse_start_fwhm = -4.0
+pulse_end_fwhm = 4.0
+[optimizer]
+max_evaluations = 300
+ftol = 1e-6
+xtol = 1e-6
+gtol = 1e-6
+epsfcn = 1e-6
+[[fixed_parameter_priors]]
+parameter = "tau43"
+standard_uncertainty = 0.0
+provenance_id = "exact-model-claim"
+[prepared_curves]
+path = "prepared_curves.bin"
+byte_size = 64
+sha256 = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+[joint_covariance]
+path = "measurement_covariance.bin"
+byte_size = 64
+sha256 = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"

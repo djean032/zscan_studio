@@ -1,0 +1,41 @@
+# CMake builds and generated files
+/build/
+/build-*/
+/cmake-build-*/
+/out/
+CMakeCache.txt
+CMakeFiles/
+Testing/
+_deps/
+compile_commands.json
+cmake_install.cmake
+CTestTestfile.cmake
+CMakeUserPresets.json
+CMakeLists.txt.user*
+
+# C++/platform artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+*.dwo
+*.app
+
+# Editors and OS files
+.cache/
+.idea/
+.vs/
+.vscode/
+*.user
+*.swp
+*~
+.DS_Store
+Thumbs.db
+/.clang-format
+/.clangd
+/PLANS.md
