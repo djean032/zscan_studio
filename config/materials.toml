@@ -1,0 +1,41 @@
+schema_version = 1
+wavelength_m = 5.32e-7
+
+# TODO: Replace these provisional refractive indices and 1% uncertainties with
+# characterized wavelength-specific values and provenance before production.
+
+[[materials]]
+material_id = "borosilicate-glass"
+name = "Borosilicate glass"
+kind = "entrance_window"
+refractive_index = 1.525
+relative_standard_uncertainty = 0.01
+status = "draft"
+provenance_id = "temporary-user-value"
+
+[[materials]]
+material_id = "quartz-fused-silica"
+name = "Quartz / fused silica"
+kind = "entrance_window"
+refractive_index = 1.54
+relative_standard_uncertainty = 0.01
+status = "draft"
+provenance_id = "temporary-user-value"
+
+[[materials]]
+material_id = "acetonitrile"
+name = "Acetonitrile"
+kind = "solvent"
+refractive_index = 1.344
+relative_standard_uncertainty = 0.01
+status = "draft"
+provenance_id = "temporary-user-value"
+
+[[materials]]
+material_id = "toluene"
+name = "Toluene"
+kind = "solvent"
+refractive_index = 1.4969
+relative_standard_uncertainty = 0.01
+status = "draft"
+provenance_id = "temporary-user-value"

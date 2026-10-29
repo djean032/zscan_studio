@@ -1,0 +1,19 @@
+schema_version = 1
+session_id = "33e47923-4466-4ec8-b957-3e4c39ad4516"
+created_at = "2026-10-25T14:00:00Z"
+manifest_revision = 1
+scans = []
+darks = []
+energy_bursts = []
+curves = [{ bad = true }]
+derived_runs = []
+
+[sample_snapshot]
+path = "sample.toml"
+byte_size = 632
+sha256 = "493f0cc1acc13ba150e0306a8e7b218a11ca33e60533232bb7df12c5dea36bb6"
+
+[instrument_snapshot]
+path = "instrument.toml"
+byte_size = 2487
+sha256 = "43faf9fd6615fd278af776bb3a2c084e0b9c3912bd77266120ff712d1e94f665"

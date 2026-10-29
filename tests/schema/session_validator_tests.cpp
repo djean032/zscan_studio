@@ -202,7 +202,7 @@ TEST_CASE("production validator requires each binary timestamp to equal its mani
     f.manifest.scans[0].acquired_at = fixture_time(19);
     f.manifest.manifest_revision = 4;
     REQUIRE(write_session_manifest_atomic(f.root, f.manifest));
-    REQUIRE(load_production_session(f.root).error().location == "scans");
+    REQUIRE(load_production_session(f.root).error().location == "scans.acquired_at");
 }
 
 TEST_CASE("production validator refuses duplicate and dangling identities and incomplete inputs")

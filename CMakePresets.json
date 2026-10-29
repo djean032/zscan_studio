@@ -38,13 +38,24 @@
       "cacheVariables": {
         "ZSCAN_ENABLE_FITTING": "ON"
       }
+    },
+    {
+      "name": "qt",
+      "displayName": "Qt Widgets session application",
+      "inherits": "schema",
+      "binaryDir": "${sourceDir}/build/qt",
+      "cacheVariables": {
+        "ZSCAN_ENABLE_QT": "ON",
+        "ZSCAN_ENABLE_FITTING": "ON"
+      }
     }
   ],
   "buildPresets": [
     { "name": "schema", "configurePreset": "schema" },
     { "name": "headless", "configurePreset": "headless" },
     { "name": "workup", "configurePreset": "workup" },
-    { "name": "fitting", "configurePreset": "fitting" }
+    { "name": "fitting", "configurePreset": "fitting" },
+    { "name": "qt", "configurePreset": "qt" }
   ],
   "testPresets": [
     { "name": "schema", "configurePreset": "schema", "output": { "outputOnFailure": true } },

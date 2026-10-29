@@ -192,6 +192,7 @@ struct SampleSnapshot {
 struct Cuvette {
     std::string cuvette_id;
     ScalarWithUncertainty path_length_m;
+    ScalarWithUncertainty refractive_index;
 };
 
 struct CuvettePair {

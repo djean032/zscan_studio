@@ -401,9 +401,11 @@ Result<InstrumentSnapshot> parse_instrument(std::string_view text)
         instrument.entrance_window_refractive_index
             = scalar_at(root, "entrance_window_refractive_index");
         each_table(root, "cuvettes", [&](const toml::table& table) {
-            keys(table, { "cuvette_id", "path_length_m" }, "cuvettes");
+            keys(table, { "cuvette_id", "path_length_m", "refractive_index" }, "cuvettes");
             instrument.cuvettes.push_back(
-                { string_at(table, "cuvette_id"), scalar_at(table, "path_length_m") });
+                { string_at(table, "cuvette_id"), scalar_at(table, "path_length_m"),
+                    table.contains("refractive_index") ? scalar_at(table, "refractive_index")
+                                                         : ScalarWithUncertainty { } });
         });
         each_table(root, "cuvette_pairs", [&](const toml::table& table) {
             keys(table,
@@ -545,6 +547,7 @@ Result<std::string> format_instrument(const InstrumentSnapshot& instrument)
             toml::table table;
             table.insert("cuvette_id", cuvette.cuvette_id);
             table.insert("path_length_m", scalar_table(cuvette.path_length_m));
+            table.insert("refractive_index", scalar_table(cuvette.refractive_index));
             cuvettes.push_back(std::move(table));
         }
         root.insert("cuvettes", std::move(cuvettes));

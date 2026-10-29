@@ -1,0 +1,86 @@
+schema_version = 1
+snapshot_id = "660e8400-e29b-41d4-a716-446655440000"
+created_at = "2026-10-25T14:00:00Z"
+source_catalog_id = "lab-zscan-catalog"
+source_catalog_revision = "2026-10-25"
+laser_characterization_id = "laser-char-001"
+wavelength_m = 5.32e-7
+pulse_fwhm_s = 9e-9
+energy_meter_calibration_id = "meter-cal-001"
+energy_meter_standard_uncertainty_j = 1.5e-9
+energy_meter_uncertainty_provenance_id = "meter-report-001"
+optical_filters = []
+
+[waist_m]
+value = 1.45e-5
+standard_uncertainty = 7.25e-7
+provenance_id = "laser-char-001"
+uncertainty_evaluation_id = "waist-fit-001"
+
+[m2]
+value = 1.2
+standard_uncertainty = 0.03
+provenance_id = "laser-char-001"
+uncertainty_evaluation_id = "m2-fit-001"
+
+[entrance_window_refractive_index]
+value = 1.461
+standard_uncertainty = 0.005
+provenance_id = "silica-datasheet"
+uncertainty_evaluation_id = "silica-index-001"
+
+[[cuvettes]]
+cuvette_id = "sample-cuvette"
+[cuvettes.path_length_m]
+value = 0.001
+standard_uncertainty = 1e-5
+provenance_id = "cuvette-report"
+uncertainty_evaluation_id = "path-evaluation"
+
+[[cuvettes]]
+cuvette_id = "blank-cuvette"
+[cuvettes.path_length_m]
+value = 0.001
+standard_uncertainty = 1e-5
+provenance_id = "cuvette-report"
+uncertainty_evaluation_id = "path-evaluation"
+
+[[cuvette_pairs]]
+calibration_id = "pair-cal-001"
+sample_cuvette_id = "sample-cuvette"
+blank_cuvette_id = "blank-cuvette"
+scan_configuration_id = "scan-config-001"
+[cuvette_pairs.correction_factor]
+value = 1.05
+standard_uncertainty = 0.03
+provenance_id = "pair-campaign-001"
+uncertainty_evaluation_id = "pair-fit-001"
+
+[[daq_configurations]]
+configuration_id = "daq-config-001"
+device_id = "ni-daq-001"
+trigger_terminal_index = 0
+trigger_edge = "rising"
+channels = [
+  { channel_index = 0, role = "reference", terminal_configuration = "rse", coupling = "dc", minimum_v = -0.1, maximum_v = 10.0 },
+  { channel_index = 1, role = "signal", terminal_configuration = "rse", coupling = "dc", minimum_v = -0.1, maximum_v = 10.0 }
+]
+
+[[optical_configurations]]
+configuration_id = "optical-config-001"
+reference_filter_ids = []
+signal_filter_ids = []
+
+[[stage_configurations]]
+configuration_id = "stage-config-001"
+controller_id = "esp302-001"
+axis = 1
+maximum_readback_error_m = 1e-6
+tolerance_provenance_id = "stage-specification"
+maximum_move_attempts = 2
+
+[[scan_configurations]]
+configuration_id = "scan-config-001"
+daq_configuration_id = "daq-config-001"
+optical_configuration_id = "optical-config-001"
+stage_configuration_id = "stage-config-001"

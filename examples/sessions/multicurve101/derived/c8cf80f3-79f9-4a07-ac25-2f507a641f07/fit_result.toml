@@ -1,0 +1,26 @@
+chi_squared = 86.649343069358338
+converged = true
+function_evaluations = 30
+initial_residual_norm = 3.2044831636937472
+jacobian_rank = 1
+max_abs_residual = 0.20828723633580137
+residual_norm = 2.8275086107642395
+run_id = 'c8cf80f3-79f9-4a07-ac25-2f507a641f07'
+schema_version = 1
+status = 3
+
+[[parameters]]
+calibration_variance_contributions = [
+    1.908045706743447e-38,
+    9.1404550411466846e-38,
+    1.1162993621092221e-40,
+    3.0595163135265556e-37,
+    7.1068532560848023e-37,
+    1.6650588206030299e-37,
+    4.1626477924862388e-38,
+    0.0
+]
+conditional_standard_error = 9.3066255698806856e-18
+parameter = 'sigma_g'
+total_standard_error = 9.3780939136009084e-18
+value = 5.219873261293407e-17

@@ -214,15 +214,21 @@ Result<ValidatedSession> load_production_session(const std::filesystem::path& ro
             root, record.file, [](const auto& data) { return binary::decode_scan(data); });
         if (!scan)
             return std::unexpected(scan.error());
-        if (scan->header.record_id != record.acquisition_id
-            || scan->header.session_id != session.manifest.session_id
-            || scan->header.timestamp != record.acquired_at || scan->config.kind != record.kind
-            || !same_grid(scan->config.grid, record.grid)
-            || !same_capture(scan->config.capture, record.capture)
-            || (scan->end.result == binary::ScanResult::Complete)
-                != (record.state == AcquisitionState::Complete))
-            return refuse<ValidatedSession>(
-                "scans", "scan header, grid, capture or state disagrees with manifest");
+        if (scan->header.record_id.to_string() != record.acquisition_id.to_string())
+            return refuse<ValidatedSession>("scans.acquisition_id", "scan header ID disagrees with manifest");
+        if (scan->header.session_id.to_string() != session.manifest.session_id.to_string())
+            return refuse<ValidatedSession>("scans.session_id", "scan header session disagrees with manifest");
+        if (scan->header.timestamp != record.acquired_at)
+            return refuse<ValidatedSession>("scans.acquired_at", "scan header timestamp disagrees with manifest");
+        if (scan->config.kind != record.kind)
+            return refuse<ValidatedSession>("scans.kind", "scan kind disagrees with manifest");
+        if (!same_grid(scan->config.grid, record.grid))
+            return refuse<ValidatedSession>("scans.grid", "scan grid disagrees with manifest");
+        if (!same_capture(scan->config.capture, record.capture))
+            return refuse<ValidatedSession>("scans.capture", "scan capture disagrees with manifest");
+        if ((scan->end.result == binary::ScanResult::Complete)
+            != (record.state == AcquisitionState::Complete))
+            return refuse<ValidatedSession>("scans.state", "scan completion state disagrees with manifest");
         const auto* configuration = by_id(session.instrument.scan_configurations,
             record.scan_configuration_id, [](const auto& c) { return c.configuration_id; });
         if (!configuration)

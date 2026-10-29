@@ -1,0 +1,130 @@
+schema_version = 1
+session_id = "33e47923-4466-4ec8-b957-3e4c39ad4516"
+created_at = "2026-10-25T14:00:00Z"
+derived_runs = []
+manifest_revision = 1
+
+[sample_snapshot]
+path = "sample.toml"
+byte_size = 632
+sha256 = "493f0cc1acc13ba150e0306a8e7b218a11ca33e60533232bb7df12c5dea36bb6"
+
+[instrument_snapshot]
+path = "instrument.toml"
+byte_size = 2487
+sha256 = "43faf9fd6615fd278af776bb3a2c084e0b9c3912bd77266120ff712d1e94f665"
+
+[[scans]]
+acquisition_id = "550e8400-e29b-41d4-a716-446655440000"
+kind = "blank"
+state = "complete"
+acquired_at = "2026-10-25T14:00:20Z"
+solvent_id = "methanol-lot-001"
+cuvette_id = "blank-cuvette"
+scan_configuration_id = "scan-config-001"
+[scans.file]
+path = "scans/blank.bin"
+byte_size = 680
+sha256 = "360c205fee3a6aefe9f054cbd61b07d4972ab55ae89f8fed90eb196cea590d5a"
+[scans.grid]
+start_z_m = -0.001
+end_z_m = 0.001
+position_count = 2
+spacing_m = 0.002
+[scans.capture]
+sample_rate_hz = 1e6
+pretrigger_sample_count = 10
+posttrigger_sample_count = 140
+peak_extraction_rule = 1
+peak_extraction_rule_version = 1
+target_accepted_readings = 2
+maximum_rejected_attempts = 1
+
+[[scans]]
+acquisition_id = "771e8400-e29b-41d4-a716-446655440000"
+kind = "sample"
+state = "complete"
+acquired_at = "2026-10-25T14:00:22Z"
+sample_id = "sample-rhodamine-001"
+solvent_id = "methanol-lot-001"
+cuvette_id = "sample-cuvette"
+scan_configuration_id = "scan-config-001"
+[scans.file]
+path = "scans/sample.bin"
+byte_size = 680
+sha256 = "d1c708ad4ac6a79fd1241de01c21372c217db7606d3c5d92a35913b3d38834b4"
+[scans.grid]
+start_z_m = -0.001
+end_z_m = 0.001
+position_count = 2
+spacing_m = 0.002
+[scans.capture]
+sample_rate_hz = 1e6
+pretrigger_sample_count = 10
+posttrigger_sample_count = 140
+peak_extraction_rule = 1
+peak_extraction_rule_version = 1
+target_accepted_readings = 2
+maximum_rejected_attempts = 1
+
+[[darks]]
+record_id = "881e8400-4466-4ec8-b957-3e4c39ad4516"
+state = "complete"
+acquired_at = "2026-10-25T14:00:10Z"
+daq_configuration_id = "daq-config-001"
+[darks.file]
+path = "darks/before.bin"
+byte_size = 288
+sha256 = "839287b920b3a474173e6d0bb1481fc09cf5a45525d027e176447e964d819fb9"
+[darks.conditions]
+laser_running = true
+beam_blocked = true
+reference_detector_capped = true
+signal_detector_capped = true
+[darks.capture]
+sample_rate_hz = 1e6
+pretrigger_sample_count = 10
+posttrigger_sample_count = 140
+peak_extraction_rule = 1
+peak_extraction_rule_version = 1
+target_accepted_readings = 2
+maximum_rejected_attempts = 1
+
+[[darks]]
+record_id = "991e8400-4466-4ec8-b957-3e4c39ad4516"
+state = "complete"
+acquired_at = "2026-10-25T14:00:24Z"
+daq_configuration_id = "daq-config-001"
+[darks.file]
+path = "darks/after.bin"
+byte_size = 288
+sha256 = "97753b017375a75c2d17d74c171795b1d620c2982dba0c158c8eee66f959ab5b"
+[darks.conditions]
+laser_running = true
+beam_blocked = true
+reference_detector_capped = true
+signal_detector_capped = true
+[darks.capture]
+sample_rate_hz = 1e6
+pretrigger_sample_count = 10
+posttrigger_sample_count = 140
+peak_extraction_rule = 1
+peak_extraction_rule_version = 1
+target_accepted_readings = 2
+maximum_rejected_attempts = 1
+
+[[energy_bursts]]
+burst_id = "aa1e8400-4466-4ec8-b957-3e4c39ad4516"
+entered_at = "2026-10-25T14:00:05Z"
+reading_count = 2
+energy_meter_calibration_id = "meter-cal-001"
+[energy_bursts.file]
+path = "energy/burst.bin"
+byte_size = 180
+sha256 = "c8745cad1e012e43c985e9d019adc0589b7c5ec9a15a9fa752d1ffe56c47deeb"
+[[curves]]
+curve_id = "bb1e8400-4466-4ec8-b957-3e4c39ad4516"
+sample_acquisition_id = "771e8400-e29b-41d4-a716-446655440000"
+blank_acquisition_id = "550e8400-e29b-41d4-a716-446655440000"
+energy_burst_id = "aa1e8400-4466-4ec8-b957-3e4c39ad4516"
+cuvette_pair_calibration_id = "pair-cal-001"

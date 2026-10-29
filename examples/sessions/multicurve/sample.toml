@@ -1,0 +1,22 @@
+schema_version = 1
+sample_id = "sample-rhodamine-001"
+solvent_id = "methanol-lot-001"
+created_at = "2026-10-25T14:00:00Z"
+
+[concentration_mol_per_l]
+value = 1e-5
+standard_uncertainty = 2e-7
+provenance_id = "preparation-notebook-42"
+uncertainty_evaluation_id = "concentration-evaluation-1"
+
+[solvent_refractive_index]
+value = 1.3284
+standard_uncertainty = 5.773502691896258e-5
+provenance_id = "methanol-datasheet"
+uncertainty_evaluation_id = "methanol-index-evaluation-1"
+
+[solvent_refractive_index.conversion]
+method = "rectangular_half_width"
+source_value = 0.0001
+divisor = 1.7320508075688772
+provenance_id = "methanol-datasheet"
