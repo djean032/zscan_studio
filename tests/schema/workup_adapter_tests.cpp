@@ -110,3 +110,16 @@ TEST_CASE("headless workup adapter preserves dark midpoint and constructs absolu
     REQUIRE(result->calibration.entrance_chain_transmission > 0);
     REQUIRE(result->calibration.energy_meter_standard_error_j == 1e-9);
 }
+
+TEST_CASE("workup converts fractional dark timestamps to the system clock resolution")
+{
+    auto session = fixture();
+    session.manifest.darks[1].acquired_at.nanosecond = 123'456'789;
+    const auto prepared = prepare_workup(session, { 0.05, 0.05 });
+    REQUIRE(prepared);
+    const auto expected = std::chrono::time_point_cast<std::chrono::system_clock::duration>(
+                              session.manifest.darks[1].acquired_at.seconds)
+        + std::chrono::duration_cast<std::chrono::system_clock::duration>(
+            std::chrono::nanoseconds { 123'456'789 });
+    REQUIRE(prepared->darks[0].acquired_at == expected);
+}

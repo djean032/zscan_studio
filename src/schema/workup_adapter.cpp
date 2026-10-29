@@ -13,7 +13,11 @@ namespace {
 
     std::chrono::system_clock::time_point time_point(const UtcTimestamp& value)
     {
-        return value.seconds + std::chrono::nanoseconds(value.nanosecond);
+        // system_clock::duration is not nanoseconds on every platform (MSVC
+        // uses a coarser tick). Convert the fractional second explicitly.
+        return std::chrono::time_point_cast<std::chrono::system_clock::duration>(value.seconds)
+            + std::chrono::duration_cast<std::chrono::system_clock::duration>(
+                std::chrono::nanoseconds { value.nanosecond });
     }
 
     zfit::workup::RawScan to_raw_scan(
