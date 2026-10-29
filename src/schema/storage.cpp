@@ -398,9 +398,14 @@ Result<void> write_session_manifest_atomic(
         return fail<void>(
             ErrorCode::FilesystemError, "cannot close temporary manifest", "session.toml");
     // Verify the temporary file before publishing it. A failure leaves it for audit.
-    std::ifstream verify(temporary, std::ios::binary);
-    std::string content((std::istreambuf_iterator<char>(verify)), std::istreambuf_iterator<char>());
-    if (!verify.bad() && content == *text && toml_io::parse_session(content)) {
+    bool verified = false;
+    {
+        std::ifstream verify(temporary, std::ios::binary);
+        std::string content((std::istreambuf_iterator<char>(verify)), std::istreambuf_iterator<char>());
+        verified = verify.is_open() && !verify.bad() && content == *text
+            && toml_io::parse_session(content).has_value();
+    } // Close the temporary file before renaming it on Windows.
+    if (verified) {
         std::filesystem::rename(temporary, *target, ec);
         if (!ec)
             return { };

@@ -34,9 +34,9 @@ struct TemporarySession {
     std::filesystem::path path;
     TemporarySession()
     {
-        path = "/tmp/opencode";
-        path /= "zscan_storage_test_"
-            + std::to_string(std::chrono::steady_clock::now().time_since_epoch().count());
+        path = std::filesystem::temp_directory_path()
+            / ("zscan_storage_test_"
+                + std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
         std::filesystem::create_directories(path / "scans");
     }
     ~TemporarySession() { std::filesystem::remove_all(path); }

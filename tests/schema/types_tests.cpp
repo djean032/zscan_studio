@@ -56,8 +56,9 @@ TEST_CASE("canonical UUID v4 round trips as wire bytes")
 
 TEST_CASE("UTC timestamps round trip and reject invalid dates and precision")
 {
-    for (std::string_view text : { "2026-10-25T14:03:00Z", "2026-02-28T23:59:59.123456789Z",
-             "2000-02-29T00:00:00.01Z", "9999-12-31T23:59:59Z" }) {
+    for (std::string_view text : { "0001-01-01T00:00:00Z", "2026-10-25T14:03:00Z",
+             "2026-02-28T23:59:59.123456789Z", "2000-02-29T00:00:00.01Z",
+             "2262-04-11T23:47:17Z", "2263-01-01T00:00:00Z", "9999-12-31T23:59:59Z" }) {
         const auto parsed = UtcTimestamp::parse(text);
         REQUIRE(parsed);
         REQUIRE(parsed->to_string() == text);

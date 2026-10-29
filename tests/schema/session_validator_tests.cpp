@@ -17,8 +17,9 @@ struct Fixture {
     std::filesystem::path root;
     SessionManifest manifest;
     Fixture()
-        : root("/tmp/opencode/zscan_validator_"
-              + std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()))
+        : root(std::filesystem::temp_directory_path()
+              / ("zscan_validator_"
+                  + std::to_string(std::chrono::steady_clock::now().time_since_epoch().count())))
         , manifest { *random_uuid_v4(), *UtcTimestamp::parse("2026-10-25T14:00:00Z"), 1,
             { *SessionPath::parse("sample.toml"), 0, { } },
             { *SessionPath::parse("instrument.toml"), 0, { } } }
@@ -141,7 +142,8 @@ void populate(Fixture& f)
 TEST_CASE("session production validation has a dedicated Qt-free entry point")
 {
     REQUIRE_FALSE(
-        zscan::schema::load_production_session("/tmp/opencode/nonexistent-zscan-session"));
+        zscan::schema::load_production_session(
+            std::filesystem::temp_directory_path() / "nonexistent-zscan-session"));
 }
 
 TEST_CASE("production session selects closest electronic-compatible dark without age cutoff")

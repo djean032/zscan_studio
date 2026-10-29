@@ -19,7 +19,7 @@ std::string text(const std::filesystem::path& path)
 }
 
 struct Temp {
-    std::filesystem::path root = std::filesystem::path("/tmp/opencode")
+    std::filesystem::path root = std::filesystem::temp_directory_path()
         / ("zscan-new-session-"
             + std::to_string(std::chrono::steady_clock::now().time_since_epoch().count()));
     ~Temp() { std::filesystem::remove_all(root); }

@@ -211,8 +211,12 @@ Result<UtcTimestamp> UtcTimestamp::parse(std::string_view text)
         return std::unexpected(
             error(ErrorCode::InvalidTimestamp, "invalid UTC calendar date or time"));
     }
-    return UtcTimestamp { std::chrono::sys_days { day } + std::chrono::hours { h }
-            + std::chrono::minutes { min } + std::chrono::seconds { sec },
+    // Some standard libraries use a 32-bit representation for minutes. Adding
+    // minutes to sys_days would overflow that intermediate around year 6053.
+    const auto days_since_epoch = std::chrono::sys_days { day }.time_since_epoch().count();
+    const auto seconds_since_epoch = static_cast<std::int64_t>(days_since_epoch) * 86'400
+        + static_cast<std::int64_t>(h) * 3'600 + min * 60 + sec;
+    return UtcTimestamp { std::chrono::sys_seconds { std::chrono::seconds { seconds_since_epoch } },
         nanos };
 }
 
